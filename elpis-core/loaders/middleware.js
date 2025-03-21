@@ -6,6 +6,8 @@ const { sep } = path;
  * middleware laoder
  * @param {object} app Koa 实例
  * 
+ * 把所有中间件 挂载到 app.middlewares 中，方便调用
+ * 
  * 加载所有 middleware 可通过 'app.middleware.${目录}.${文件}' 访问
  * 
  * 例子：
