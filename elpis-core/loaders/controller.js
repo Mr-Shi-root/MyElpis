@@ -53,7 +53,7 @@ module.exports = (app) => {
             // 最后一个才需要挂载
             if (i === len - 1) {
                 // 挂载 controller 到内存 app对象中
-                const ControllerModule = require(path.resolve(file))(app);
+                const ControllerModule = require(path.resolve(file))(app); // controller是一个class，所以需要new 
                 tempController[names[i]] = new ControllerModule();
             } else {
                 // 如果不存在，则创建
