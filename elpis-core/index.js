@@ -47,12 +47,11 @@ module.exports = {
 
         // 加载 routerSchema
         routerSchemaLoader(app);
-        console.log(app.routerSchema);
-        
         console.log(`-- [start] load routerSchemaLoader done --`);
 
         // 加载 controller
         controllerLoader(app);
+        console.log(app.controller);
         console.log(`-- [start] load controllerLoader done --`);
         
         // 加载 service
