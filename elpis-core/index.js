@@ -51,11 +51,11 @@ module.exports = {
 
         // 加载 controller
         controllerLoader(app);
-        console.log(app.controller);
         console.log(`-- [start] load controllerLoader done --`);
         
         // 加载 service
         serviceLoader(app);
+        console.log(app.service);
         console.log(`-- [start] load serviceLoader done --`);
         
         // 加载 config
