@@ -47,19 +47,20 @@ module.exports = (app) => {
         name = name.replace(/[_-][a-z]/ig, (s) => {return s.substring(1).toUpperCase()})
 
         // 挂载 controller 到内存 app对象中, （不确定路径的层级，需要通过遍历嵌套）
-        let tempMiddleware = controller;
+        let tempController = controller;
         const names = name.split(sep);
         for(let i = 0, len = names.length; i < len; ++i) {
             // 最后一个才需要挂载
             if (i === len - 1) {
                 // 挂载 controller 到内存 app对象中
-                tempMiddleware[names[i]] = require(path.resolve(file))(app); 
+                const ControllerModule = require(path.resolve(file))(app);
+                tempController[names[i]] = new ControllerModule();
             } else {
                 // 如果不存在，则创建
-                if (!tempMiddleware[names[i]]) {
-                    tempMiddleware[names[i]] = {};
+                if (!tempController[names[i]]) {
+                    tempController[names[i]] = {};
                 }
-                tempMiddleware = tempMiddleware[names[i]];
+                tempController = tempController[names[i]];
             }
         }
 
