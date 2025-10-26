@@ -28,12 +28,12 @@ module.exports = {
 
         // 基础路径
         app.baseDir = process.cwd();
-        // console.log('基础路径：',app.baseDir);
+        console.log('基础路径：',app.baseDir);
         
         // 业务文件路径
         // ??? 需要在win上测试 `.${sep}app` 替换成`./app` 会不会正确输出路径
         app.businessPath = path.resolve(app.baseDir, `.${sep}app`) 
-        // console.log('业务文件路径：',app.businessPath);
+        console.log('业务文件路径：',app.businessPath);
 
         // 挂在环境函数
         app.env = env();
@@ -48,7 +48,7 @@ module.exports = {
         // 加载 routerSchema
         routerSchemaLoader(app);
         console.log(`-- [start] load routerSchemaLoader done --`);
-
+ 
         // 加载 controller
         controllerLoader(app);
         console.log(`-- [start] load controllerLoader done --`);
@@ -92,6 +92,7 @@ module.exports = {
             const host = process.env.IP || '0.0.0.0';
             console.log(`Server running on http://${host}:${port}`);
             console.log(`Search ${process.env.HOST} & ${process.env.IP}`);
+            
             app.listen(port, host)
         } catch (error) {
             console.log(error);
