@@ -2,7 +2,10 @@
 const ElpisCore = require('./elpis-core/index.js');
 
 // 启动
-ElpisCore.start();
+ElpisCore.start({
+    name: 'Elpis',
+    homePage: ''
+});
 
 
  
