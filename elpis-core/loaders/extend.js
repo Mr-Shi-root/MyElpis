@@ -53,5 +53,4 @@ module.exports = (app) => {
         app[name] = require(path.resolve(file))(app);
         
     })
-    app.extend = extend;
 }
