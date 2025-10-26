@@ -17,6 +17,10 @@ module.exports = {
      * 启动服务
      * @param {Object} options 项目配置
      * 
+     * options = {
+     *      name // 项目名称
+     *      homePage // 项目路径
+     * }
      * 
      */
     start(options = {}) {
@@ -65,6 +69,15 @@ module.exports = {
         // 加载 extend
         extendLoader(app);
         console.log(`-- [start] load extendLoader done --`);
+
+        // 注册全局中间件, 激活中间件
+        try {
+            require(`${app.businessPath}${sep}middleware.js}`)(app)
+            console.log('-- [start] load global appMiddleware done --');
+            
+        } catch (e) {
+            console.log('[exception] there is no middleware file.')
+        }
 
         // 注册路由（放在最后）
         routerLoader(app);
