@@ -61,7 +61,7 @@ module.exports = {
         serviceLoader(app);
         console.log(app.service);
         console.log(`-- [start] load serviceLoader done --`);
-        
+8
         // 加载 config
         configLoader(app);
         console.log(`-- [start] load configLoader done --`);
@@ -72,11 +72,10 @@ module.exports = {
 
         // 注册全局中间件, 激活中间件
         try {
-            require(`${app.businessPath}${sep}middleware.js}`)(app)
-            console.log('-- [start] load global appMiddleware done --');
-            
+            require(`${app.businessPath}${sep}middleware.js`)(app)
+            console.log('-- [start] load global middleware done --');
         } catch (e) {
-            console.log('[exception] there is no middleware file.')
+            console.log('[exception] there is no globle middleware file.')
         }
 
         // 注册路由（放在最后）
