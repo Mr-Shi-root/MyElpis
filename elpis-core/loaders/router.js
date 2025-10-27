@@ -24,7 +24,7 @@ module.exports = (app) => {
     const routerPath = path.resolve(app.businessPath, `.${sep}router`);
 
     // 获得路径下所有文件
-    const fileList = glob.sync(routerPath, `.${sep}**${sep}**.js`);
+    const fileList = glob.sync(path.resolve(routerPath, `.${sep}**${sep}**.js`));
 
     // 实例化 KoaRouter
     const router = new KoaRouter();

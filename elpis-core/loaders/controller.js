@@ -31,6 +31,7 @@ module.exports = (app) => {
 
     // 遍历所有文件目录，把内容加载到 app.controller 下
     const controller = {};
+    
     fileList.forEach(file => {
         // 提取文件名称
         // 截取路径
@@ -56,13 +57,16 @@ module.exports = (app) => {
                 const ControllerModule = require(path.resolve(file))(app); // controller是一个class，所以需要new 
                 tempController[names[i]] = new ControllerModule();
             } else {
+                // --- 这里有异议 这里当时是保留的，但是保留会影响 controller 格式，为什么 temp变了， control没变 ---
                 // 如果不存在，则创建
-                if (!tempController[names[i]]) {
-                    tempController[names[i]] = {};
-                }
-                tempController = tempController[names[i]];
+                // if (!tempController[names[i]]) {
+                //     tempController[names[i]] = {};
+                // }
+                // tempController = tempController[names[i]];
+                
             }
         }
+        
 
         // const fileName = path.basename(file, '.js');
         // const fileDir = path.dirname(file);
@@ -76,5 +80,6 @@ module.exports = (app) => {
         //     path: filePath,
         // }
     })
+    
     app.controller = controller;
 }
