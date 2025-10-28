@@ -57,10 +57,10 @@ module.exports = (app) => {
                 tempService[names[i]] = new ServiceerModule();
             } else {
                 // 如果不存在，则创建
-                if (!tempService[names[i]]) {
-                    tempService[names[i]] = {};
-                }
-                tempService = tempService[names[i]];
+                // if (!tempService[names[i]]) {
+                //     tempService[names[i]] = {};
+                // }
+                // tempService = tempService[names[i]];
             }
         }
 
