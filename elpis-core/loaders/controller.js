@@ -42,7 +42,7 @@ module.exports = (app) => {
         let name = path.resolve(file);
 
         // 截取路径 app/controller/custom-module/index.js => custom-module/index.js
-        name = name.substring(name.lastIndexOf(`controller${sep}` + `controller${sep}`.length), name.lastIndexOf('.js'))
+        name = name.substring(name.lastIndexOf(`controller${sep}`) + `controller${sep}`.length, name.lastIndexOf('.js'))
 
         // 把 '-' 统一改为驼峰式 custom-module => customModule
         name = name.replace(/[_-][a-z]/ig, (s) => {return s.substring(1).toUpperCase()})
@@ -54,16 +54,17 @@ module.exports = (app) => {
             // 最后一个才需要挂载
             if (i === len - 1) {
                 // 挂载 controller 到内存 app对象中
+                
                 const ControllerModule = require(path.resolve(file))(app); // controller是一个class，所以需要new 
                 tempController[names[i]] = new ControllerModule();
             } else {
-                // --- 这里有异议 这里当时是保留的，但是保留会影响 controller 格式，为什么 temp变了， control没变 ---
                 // 如果不存在，则创建
-                // if (!tempController[names[i]]) {
-                //     tempController[names[i]] = {};
-                // }
-                // tempController = tempController[names[i]];
+                if (!tempController[names[i]]) {
+                    tempController[names[i]] = {};
+                }
                 
+                tempController = tempController[names[i]];
+            
             }
         }
         

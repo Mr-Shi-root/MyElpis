@@ -41,7 +41,7 @@ module.exports = (app) => {
         let name = path.resolve(file);
 
         // 截取路径 app/service/custom-module/index.js => custom-module/index.js
-        name = name.substring(name.lastIndexOf(`service${sep}` + `service${sep}`.length), name.lastIndexOf('.js'))
+        name = name.substring(name.lastIndexOf(`service${sep}`) + `service${sep}`.length, name.lastIndexOf('.js'))
 
         // 把 '-' 统一改为驼峰式 custom-module => customModule
         name = name.replace(/[_-][a-z]/ig, (s) => {return s.substring(1).toUpperCase()})
@@ -57,10 +57,10 @@ module.exports = (app) => {
                 tempService[names[i]] = new ServiceerModule();
             } else {
                 // 如果不存在，则创建
-                // if (!tempService[names[i]]) {
-                //     tempService[names[i]] = {};
-                // }
-                // tempService = tempService[names[i]];
+                if (!tempService[names[i]]) {
+                    tempService[names[i]] = {};
+                }
+                tempService = tempService[names[i]];
             }
         }
 
