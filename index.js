@@ -4,7 +4,7 @@ const ElpisCore = require('./elpis-core/index.js');
 // 启动
 ElpisCore.start({
     name: 'Elpis',
-    homePage: ''
+    homePage: '/', // 默认首页, 可用于404页面重定向 
 });
 
 
