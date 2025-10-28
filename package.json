@@ -10,9 +10,9 @@
     "beta": "_ENV='beta' node index.js",
     "prod": "_ENV='production' node index.js",
 
-    "dev:win": "set _ENV=development && node index.js",
-    "beta:win": "set _ENV=beta && node index.js",
-    "prod:win": "set _ENV=production && node index.js"
+    "dev:win": "set _ENV=development && nodemon index.js",
+    "beta:win": "set _ENV=beta && nodemon index.js",
+    "prod:win": "set _ENV=production && nodemon index.js"
   },
   "repository": {
     "type": "git",
