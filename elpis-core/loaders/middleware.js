@@ -41,7 +41,7 @@ module.exports = (app) => {
         let name = path.resolve(file);
 
         // 截取路径 app/middleware/custom-module/index.js => custom-module/index.js
-        name = name.substring(name.lastIndexOf(`middlewares${sep}` + `middlewares${sep}`.length), name.lastIndexOf('.js'))
+        name = name.substring(name.lastIndexOf(`middleware${sep}`) + `middleware${sep}`.length, name.lastIndexOf('.js'))
 
         // 把 '-' 统一改为驼峰式 custom-module => customModule
         name = name.replace(/[_-][a-z]/ig, (s) => {return s.substring(1).toUpperCase()})
@@ -75,5 +75,9 @@ module.exports = (app) => {
         //     path: filePath,
         // }
     })
+
+    console.log('middlewares: ', middlewares);
+    
+    
     app.middlewares = middlewares;
 }

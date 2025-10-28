@@ -25,4 +25,8 @@ module.exports = (app) => {
         enableTypes: ['json', 'form', 'text'],
     }));
 
+    // 引入 middleware 目录下所有中间件， 异常捕获，需在第一个
+    // -- 引入异常捕获中间件 --  
+    app.use(app.middlewares.errorHandler)
+
 }
