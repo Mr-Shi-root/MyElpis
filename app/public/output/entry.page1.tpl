@@ -27,9 +27,19 @@
         console.log(e);
     }
 
+    // async function  getProjectList() {
+    //    const res = await axios.get('/api/project/list');
+    //    console.log(res);
+    // }
+
     async function  getProjectList() {
-        const res = await axios.get('/api/project/list');
+        const res = await axios.request({
+            method: 'post',
+            url: '/api/project/list',
+            data: { a: 1, b: 2, c: 3 },
+        })
         console.log(res);
     }
+
 
 </script>

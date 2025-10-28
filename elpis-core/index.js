@@ -59,7 +59,6 @@ module.exports = {
         
         // 加载 service
         serviceLoader(app);
-        console.log(app.service);
         console.log(`-- [start] load serviceLoader done --`);
 8
         // 加载 config
