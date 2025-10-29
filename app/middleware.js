@@ -28,6 +28,7 @@ module.exports = (app) => {
     // 引入 middleware 目录下所有中间件， 异常捕获，需在第一个
     // -- 引入异常捕获中间件 --  
     app.use(app.middlewares.errorHandler)
+    // -- 引入 api 签名验证中间件 --
     app.use(app.middlewares.apiSignVerify)
 
 }
