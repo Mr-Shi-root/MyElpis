@@ -32,4 +32,6 @@ module.exports = (app) => {
     app.use(app.middlewares.apiSignVerify)
     // -- 引入 API 参数校验 --
     app.use(app.middlewares.apiParamsVerify)
+
+    // -- 到此完成 elpis-core 内核基础应用 --
 }
