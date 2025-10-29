@@ -37,7 +37,7 @@
         const res = await axios.request({
             method: 'post',
             url: '/api/project/list',
-            data: { a: 1, b: 2, c: 3 },
+            data: { proj_key: 'test', b: 2, c: 3 },
             headers: {
                 s_t: st,
                 s_sign: md5(`${signKey}_${st}`)

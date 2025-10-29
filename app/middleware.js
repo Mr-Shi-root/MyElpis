@@ -30,5 +30,6 @@ module.exports = (app) => {
     app.use(app.middlewares.errorHandler)
     // -- 引入 api 签名验证中间件 --
     app.use(app.middlewares.apiSignVerify)
-
+    // -- 引入 API 参数校验 --
+    app.use(app.middlewares.apiParamsVerify)
 }

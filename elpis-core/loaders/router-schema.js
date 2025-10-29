@@ -33,7 +33,7 @@ module.exports = (app) => {
     const routerSchemaPath = path.resolve(app.businessPath,  `.${sep}router-schema`); // 获取 routerSchema 文件目录
     const fileList = glob.sync(path.resolve(routerSchemaPath, `.${sep}**${sep}**.js`));
 
-    const routerSchema = {};
+    let routerSchema = {};
     fileList.forEach(file => {
         routerSchema = {
             ...routerSchema,
