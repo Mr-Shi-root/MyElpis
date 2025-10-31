@@ -31,20 +31,20 @@
     //    console.log(res);
     // }
 
-    async function  getProjectList() {
-        const signKey = 'xdh1j3jh1hjfhjhchhj13heh';
-        const st = Date.now() - 100000000;
-        const res = await axios.request({
-            method: 'post',
-            url: '/api/project/list',
-            data: { proj_key: 'test', b: 2, c: 3 },
-            headers: {
-                s_t: st,
-                s_sign: md5(`${signKey}_${st}`)
-            }
-        })
-        console.log(res);
-    }
+    // async function  getProjectList() {
+        //     const signKey = 'xdh1j3jh1hjfhjhchhj13heh';
+        //     const st = Date.now() - 100000000;
+        //     const res = await axios.request({
+        //         method: 'post',
+        //         url: '/api/project/list',
+        //         data: { proj_key: 'test', b: 2, c: 3 },
+        //         headers: {
+        //             s_t: st,
+        //             s_sign: md5(`${signKey}_${st}`)
+        //         }
+        //     })
+        //     console.log(res);
+        // }
 
 
 </script>
