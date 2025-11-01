@@ -9,6 +9,7 @@
 <script setup>
 import { ref } from 'vue'
 console.log('page2 init');
+import utils from '$common/utils';
 
 const count = ref(0)
 

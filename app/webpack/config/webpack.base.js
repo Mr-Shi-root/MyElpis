@@ -7,7 +7,6 @@ const path = require("path");
 const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { constrainedMemory } = require('process');
 
 // 动态生成 entry 配置
 const pageEntry = {};
@@ -98,7 +97,8 @@ module.exports =  {
         filename: 'js/[name]_[chunkhash:8].bundle.js',
         path: path.join(process.cwd(), './app/public/dist/prod'),
         publicPath: '/dist/prod',
-        crossOriginLoading: 'anonymous' //  解决跨域问题
+        crossOriginLoading: 'anonymous', //  解决跨域问题
+        clean: true, 
     },
     // 配置模块解析的具体行为（定义 webpack 在打包时， 如何找到并解析具体模块的路径）
     // eg: import xxx from './xxx' // 不用写后缀
@@ -136,6 +136,40 @@ module.exports =  {
     ],
     // 配置 webpack 优化行为 eg：代码分割， 模块合并， 缓存， TreeShaking， 压缩等优化策略
     optimization: {
-
+        // 分包处理 当多个文件引入的公共代码时，会进行代码分割
+        /**
+         * 把 js 文件打包成3中类型
+         * 1. vender： 第三方 lib 库， 基本不会改动，除非以来版本升级
+         * 2. common： 业务组件代码的公共部分抽取出来， 改动较少
+         * 3. entry.{page}: 不用页面 entry 里的业务组件代码的差异部分，会经常改动
+         * 目的： 把改动和引用频率不一样的 js 区分出来，以达到更好利用浏览器缓存的效果
+         */
+        splitChunks: {
+            chunks: 'all', // 对同步和异步模块都进行分割
+            // minSize: 30000,
+            // maxSize: 0,
+            // minChunks: 1,
+            maxAsyncRequests: 10, // 最大异步请求数， 默认 5
+            maxInitialRequests: 10, // 最大入口点初始化异步请求数， 默认 3
+            // automaticNameDelimiter: '~',
+            // automaticNameMaxLength: 30,
+            cacheGroups: {
+                vendor: { // 
+                    test: /[\\/]node_modules[\\/]/, // 打包 node_module 中的文件
+                    name: 'vender', // 缓存组名称
+                    priority: 20, // 缓存组优先级， 数字越大，优先级越高
+                    enforce: true, // 强制缓存组， 默认 false
+                    reuseExistingChunk: true, // 重用已有的 chunk，不需要重新打包 默认 false
+                },
+                common: {
+                    // test: /[\\/]app[\\/]pages[\\/]/, // 匹配 app/pages 下的文件 这里加个目录，也会匹配到 vue ，为啥 vue不会打包到 common里  
+                    name: 'common', // 缓存组名称
+                    minChunks: 2, // 引用次数 被 N 处地方引入即被归为公共模块
+                    minSize: 1, // 公共模块文件大小 （ 1 byte ）
+                    priority: 10, // 缓存组优先级， 默认 0 
+                    reuseExistingChunk: true, // 重用已有的 chunk，不需要重新打包 默认 false
+                }
+            }
+        }
     },
 }
