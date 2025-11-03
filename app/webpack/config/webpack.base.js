@@ -170,6 +170,8 @@ module.exports =  {
                     reuseExistingChunk: true, // 重用已有的 chunk，不需要重新打包 默认 false
                 }
             }
-        }
+        },
+        // 将 webpack 运行时生成的代码打包到 runtime.js
+        runtimeChunk: true
     },
 }

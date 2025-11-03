@@ -1,10 +1,9 @@
 const webpack = require('webpack');
-const webBaseConfig = require('./config/webpack.base.js') 
+const webProdConfig = require('./config/webpack.prod.js') 
 
 console.log('\n[webpack] start build...');
-console.log('webpack cwd: ', process.cwd())
 
-webpack(webBaseConfig, (err, stats) => {
+webpack(webProdConfig, (err, stats) => {
     if (err) {
         console.log(err.stack || err);
         return;

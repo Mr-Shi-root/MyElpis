@@ -1,7 +1,7 @@
 <template>
 <div class="title-color">
     <h1>page1</h1>
-    <input type="text" v-model="count"></input>
+    <input type="text" class="xyx-lh" v-model="count"></input>
     {{ count }}
 </div>
 </template> 
@@ -22,5 +22,9 @@ h1 {
 }
 .title-color { 
     color: red;
+}
+.xyx-lh{
+  width: 100px;
+  height: 100px;
 }
 </style>
