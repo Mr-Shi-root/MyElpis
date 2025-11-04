@@ -16,6 +16,8 @@ const htmlWebpackPlugin = [];
 const entryList = glob.sync(path.resolve(process.cwd(), './app/pages/**/entry.*.js'));
 entryList.forEach(file => {
     const entryName = path.basename(file, '.js');
+    console.log('entry/:name', entryName);
+    
     // 构造 entry
     pageEntry[entryName] = file
     // 构造最终渲染的页面文件
@@ -26,6 +28,9 @@ entryList.forEach(file => {
         chunks: [entryName],
     }))
 })
+
+console.log();
+
 
 // webpack 环境配置
 module.exports =  {
@@ -124,9 +129,9 @@ module.exports =  {
         }),
         // 定义全局常量
         new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            },
+            // 'process.env': {
+            //     NODE_ENV: '"production"'
+            // },
             __VUE_OPTIONS__API__: true, // 支持 vue 解析 optionsAPi
             __VUE_PROD_DEVTOOLS__: false, // 禁用 Vue 调试工具
             __VUE_PROD_HYDRATION__MISMATCH_DETAILS__: true, // 禁止生产环境显示 “水合” 信息
