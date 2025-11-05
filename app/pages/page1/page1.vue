@@ -1,8 +1,8 @@
 <template>
 <div class="title-color">
     <h1>page1</h1>
-    <input type="text" class="xyx-lh" v-model="count"></input>
-    {{ count }}111
+    <el-input type="text" class="xyx-lh" v-model="count"></el-input>
+    {{ count }}
 </div>
 </template> 
 

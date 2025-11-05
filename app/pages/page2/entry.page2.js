@@ -1,6 +1,9 @@
-import { createApp } from "vue";
-import page1 from "./page2.vue";
+// import { createApp } from "vue";
+import page2 from "./page2.vue";
 
-const app = createApp(page1);
+// const app = createApp(page1);
 
-app.mount("#root"); 
+// app.mount("#root"); 
+
+import Boot from '../boot'
+Boot(page2)

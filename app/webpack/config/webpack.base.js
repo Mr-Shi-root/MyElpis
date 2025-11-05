@@ -126,6 +126,8 @@ module.exports =  {
         new webpack.ProvidePlugin({
             $: 'jquery',
             Vue: 'vue',
+            axios: 'axios',
+            _: 'lodash'
         }),
         // 定义全局常量
         new webpack.DefinePlugin({
