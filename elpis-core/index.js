@@ -109,5 +109,7 @@ module.exports = {
             console.log(error);
             
         }
+
+        return app;
     }
 }
