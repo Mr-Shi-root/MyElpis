@@ -17,7 +17,7 @@ const entryList = glob.sync(path.resolve(process.cwd(), './app/pages/**/entry.*.
 entryList.forEach(file => {
     const entryName = path.basename(file, '.js');
     console.log('entry/:name', entryName);
-    
+
     // 构造 entry
     pageEntry[entryName] = file
     // 构造最终渲染的页面文件
@@ -33,7 +33,7 @@ console.log();
 
 
 // webpack 环境配置
-module.exports =  {
+module.exports = {
     // 入口配置
     entry: pageEntry,
     // 模块解析配置（决定了要加在解释那些模块，以及用什么方式去解释）
@@ -54,7 +54,7 @@ module.exports =  {
             },
             {
                 test: /\.js$/,
-                include:[
+                include: [
                     // 只对业务代码进行 babel 加快 webpack 打包速度
                     path.resolve(process.cwd(), './app/pages'),
                 ],
@@ -71,25 +71,20 @@ module.exports =  {
                 exclude: /node_modules/
             },
             {
-                test: /\.(png | jpe?g | gif | svg )(\?.+)?&/,
-                use: [
-                    {
-                        loader: 'url-loader',
-                        options: {
-                            limit: 1024,
-                            name: '[name].[ext]?[hash:8]',
-                            esModule: false
-                        }
-                    }
-                ]
+                test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                    limit: 10000, // 10KB 以下转 base64
+                    name: 'img/[name].[hash:8].[ext]'
+                }
             },
             {
                 test: /\.css$/,
-                use: [{loader: 'style-loader'}, {loader: 'css-loader'}]
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
             },
             {
                 test: /\.less$/,
-                use: [{loader: 'style-loader'}, {loader: 'css-loader'}, {loader: 'less-loader'}]
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'less-loader' }]
             },
             {
                 test: /\.(eot|ttf|woff|woff2|svg)(\?\S*)?&/,
@@ -103,19 +98,19 @@ module.exports =  {
         path: path.join(process.cwd(), './app/public/dist/prod'),
         publicPath: '/dist/prod',
         crossOriginLoading: 'anonymous', //  解决跨域问题
-        clean: true, 
+        clean: true,
     },
     // 配置模块解析的具体行为（定义 webpack 在打包时， 如何找到并解析具体模块的路径）
     // eg: import xxx from './xxx' // 不用写后缀
     resolve: {
         extensions: ['.js', '.vue', '.less', '.css', '.json', '.scss', '.sass'],
         alias: { // 开发便捷性，节省一些根目录，通过 $pages 引用
-            $pages: path.resolve(process.cwd(), './app/pages'),
-            $common: path.resolve(process.cwd(), './app/pages/common'),
-            $widgets: path.resolve(process.cwd(), './app/pages/widgets'),
-            $store: path.resolve(process.cwd(), './app/pages/store'),
+            "$pages": path.resolve(process.cwd(), './app/pages'),
+            "$common": path.resolve(process.cwd(), './app/pages/common'),
+            "$widgets": path.resolve(process.cwd(), './app/pages/widgets'),
+            "$store": path.resolve(process.cwd(), './app/pages/store'),
         }
-    },   
+    },
     // 配置 webpack 插件
     plugins: [
         // 处理 .vue 文件，这个插件是必须的

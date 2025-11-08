@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html> 
+<html class="dark"> 
     <head> 
     <meta charset="utf-8">
         <title>{{ name }}</title>
@@ -8,9 +8,6 @@
     </head>
     <body style="margin: 0;">
         <div id="root"></div>
-        <input id="env" type="text" value="{{ env }}" style="display: none;">
-        <input id="options" type="text" value="{{ options }}" style="display: none;">
-        <button id="btn" onClick="getProjectList()">发送请求11</button>
     </body>
 </html>
 <style>
