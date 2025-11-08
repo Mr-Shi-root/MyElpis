@@ -1,7 +1,7 @@
 {
     "extends": [
       "plugin:vue/base",
-      "plugin:vue/recommended",
+      "plugin:vue/recommended"
     ],
     "plugins": ["vue"],
     "env": {
@@ -15,7 +15,7 @@
       "sourceType": "module"
     },
     "rules": {
-      "no-unused-vars": [2, {"args": "none"}],
+      "no-unused-vars": "off",
       "strict": "off",
       "valid-jsdoc": "off",
       "jsdoc/require-param-description": "off",

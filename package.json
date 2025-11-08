@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "_ENV='local' mocha 'test/**/*.js'",
-    "lint": "eslint --quiet --ext js,vue",
+    "lint": "eslint --quiet --ext js,vue --config .eslintrc .",
     "dev": "_ENV='local' nodemon index.js",
     "beta": "_ENV='beta' node index.js",
     "prod": "_ENV='production' node index.js",
