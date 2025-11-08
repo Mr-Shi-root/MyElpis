@@ -5,7 +5,7 @@ import {ElMessage} from 'element-plus';
  */
 const curl = ({
     url, 
-    method = 'post', 
+    methods = 'post', 
     headers = {}, // 请求头
     query = {}, // url query
     data = {}, // post body
@@ -21,7 +21,7 @@ const curl = ({
     // 构造请求参数 (把参数转换为 axios 参数)
     const ajaxSetting = {
         url, 
-        method: 'post', 
+        methods, 
         params: query,
         data, // post body
         responseType, // response data type
@@ -34,11 +34,12 @@ const curl = ({
     }
 
     return axios.request(ajaxSetting).then((responent) => {
-
+        console.log('response: ', responent);
+        
         const resData = responent.data || {}
 
         // 后端 API 返回格式
-        const{ success } = responent
+        const{ success } = resData
         if (!success) {
             const {message, code} = responent
             if(code === 442) {
