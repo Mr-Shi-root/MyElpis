@@ -1,4 +1,4 @@
 // 忽略的目录
 node_modules/
-public/
+public/ 
 docs/
